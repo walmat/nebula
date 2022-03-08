@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+  />
+  <script>
+    if (!crossOriginIsolated) SharedArrayBuffer = ArrayBuffer;
+  </script>
+  <script src="https://nebulabots.s3.amazonaws.com/virtualpointer.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <title>Captcha Harvester</title>
+  <style>
+    html,
+    body {
+      border-radius: 3px;
+      border: none;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      max-width: 450px;
+      margin: auto;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    #close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      cursor: pointer;
+    }
+
+    #minimize-btn {
+      position: absolute;
+      top: 8px;
+      right: 48px;
+      cursor: pointer;
+    }
+
+    #minimize-btn:hover,
+    #close-btn:hover {
+      cursor: pointer;
+      opacity: 0.43333;
+    }
+
+    #titlebar {
+      user-select: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 60px;
+      height: 32px;
+      background: transparent;
+      -webkit-user-select: none;
+      -webkit-app-region: drag;
+    }
+
+    .noselect {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    #harvester-name {
+      font-size: 2em;
+      font-weight: 500;
+      left: 14px;
+      position: absolute;
+      font-family: 'Roboto';
+    }
+
+    #harvester-type {
+      font-size: 14px;
+      font-weight: 400;
+      position: absolute;
+      font-family: 'Roboto';
+      top: 58px;
+      left: 14px;
+    }
+
+    #harvester-id {
+      font-size: 12px;
+      font-weight: 400;
+      position: absolute;
+      font-family: 'Roboto';
+      top: 85px;
+      left: 14px;
+    }
+
+    #harvester-platform {
+      position: absolute;
+      margin: auto;
+      position: absolute;
+      font-family: 'Roboto';
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      opacity: 0.25;
+      width: 45px;
+      height: 45px;
+      object-fit: scale-down;
+    }
+
+    .not-solving {
+      color: unset;
+    }
+
+    .solving {
+      color: #8e83f4;
+    }
+
+    .light {
+      color: #000;
+      background-color: #f4f4f4;
+    }
+
+    .dark {
+      color: #fff;
+      background-color: #202126;
+    }
+
+    svg {
+      background: transparent !important;
+    }
+
+    #captcha {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: scale(0.85);
+    }
+
+    #loader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    .loading {
+      height: 300px;
+      width: 100%;
+    }
+
+    .visible {
+      visibility: visible;
+    }
+
+    .hidden {
+      visibility: hidden;
+      height: 0 !important;
+      width: 0 !important;
+    }
+
+    #g-recaptcha {
+      display: flex;
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="titlebar"></div>
+  <div class="noselect" id="minimize-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><title>Minimize</title><path d="M6 19h12v2H6z" fill="#616161" fill-opacity="1"/><path d="M0 0h24v24H0V0z" fill="none"/></svg>
+  </div>
+  <div class="noselect" id="close-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+      <rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="none" stroke="none" />
+      <g class="currentLayer">
+        <title>Close</title>
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          id="svg_1" class="selected" fill="#616161" fill-opacity="1" />
+      </g>
+    </svg>
+  </div>
+  <h1 class="noselect" id="harvester-name">Default</h1>
+  <h1 class="noselect" id="harvester-type">Captcha Harvester</h1>
+  <h1 class="noselect" id="harvester-id"></h1>
+  <div id="loader">
+    <svg class="loading noselect" version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    viewBox="-75 -100 200 300" enable-background="new 0 0 0 0" xml:space="preserve">
+      <circle fill="#616161" stroke="none" cx="6" cy="50" r="6">
+        <animate
+          attributeName="opacity"
+          dur="1s"
+          values="0;1;0"
+          repeatCount="indefinite"
+          begin="0.1"/>    
+      </circle>
+      <circle fill="#616161" stroke="none" cx="26" cy="50" r="6">
+        <animate
+          attributeName="opacity"
+          dur="1s"
+          values="0;1;0"
+          repeatCount="indefinite" 
+          begin="0.2"/>       
+      </circle>
+      <circle fill="#616161" stroke="none" cx="46" cy="50" r="6">
+        <animate
+          attributeName="opacity"
+          dur="1s"
+          values="0;1;0"
+          repeatCount="indefinite" 
+          begin="0.3"/>     
+      </circle>
+    </svg>
+  </div>
+  <div id="captcha">
+    <div class="g-recaptcha" id="g-recaptcha"></div>
+  </div>
+</body>
+</html>

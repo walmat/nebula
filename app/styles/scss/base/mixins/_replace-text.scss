@@ -1,0 +1,24 @@
+//------ SASS Useful Mixins ---------------------------------------------
+
+// by Ryan Burgess
+// https://github.com/ryanburgess/SASS-Useful-Mixins
+// MIT © Ryan Burgess
+
+// ----------------------------------------------------------------------
+
+// Replace text
+
+// ----------------------------------------------------------------------
+
+// example: @include replace-text();
+
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
+
+@mixin replace-text() {
+  border: 0;
+  color: transparent;
+  font: 0/0 a;
+  text-shadow: none;
+}
+
+/* stylelint-enable font-family-no-missing-generic-family-keyword */

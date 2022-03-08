@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+    />
+    <title>Nebula Omega</title>
+    <style>
+      * {
+        font-family: Roboto;
+        -webkit-app-region: no-drag;
+        user-select: none;
+        outline: none;
+        /* force everything underneath the #titlebar */
+        z-index: 9997;
+      }
+
+      svg:hover,
+      button:hover {
+        cursor: pointer;
+        opacity: 0.75;
+      }
+
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      #titlebar {
+        -webkit-app-region: drag !important;
+        height: 48px;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9998;
+      }
+
+      #close,
+      #minimize {
+        position: absolute;
+        height: 28px;
+        width: auto;
+        /* force both of the icons over the #titlebar */
+        z-index: 9999;
+        fill: #ffffff;
+      }
+
+      #submit:hover,
+      #close:hover,
+      #minimize:hover {
+        cursor: pointer;
+      }
+
+      #close {
+        right: 12px;
+        top: 12px;
+      }
+
+      #minimize {
+        right: 46px;
+        top: 2px;
+      }
+
+      #iframe {
+        margin: 0 auto;
+        height: 70%;
+        width: 90%;
+        margin: none;
+        padding: none;
+      }
+
+      #iframe > iframe {
+        border: none;
+        border-radius: 4px;
+      }
+
+      #answer-container {
+        width: 94%;
+        margin: 8px auto;
+        flex-wrap: wrap;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        display: flex;
+      }
+
+      .answer-input {
+        margin: 2%;
+        border: none;
+        padding: 0px 16px;
+        border-radius: 4px;
+        width: 100%;
+        height: 29px;
+      }
+
+      #button-container {
+        width: 100%;
+        height: 5%;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+      }
+
+      #submit-answers {
+        margin-left: 2%;
+        margin-right: 2%;
+        width: 50%;
+        height: 100%;
+        letter-spacing: 2px;
+        font-weight: 700;
+        background: linear-gradient(90deg, #8377f4 0%, #a49bff 100%);
+        border-radius: 4px;
+        border: none;
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="titlebar"></div>
+    <svg
+      id="close"
+      xmlns="http://www.w3.org/2000/svg"
+      height="24"
+      viewBox="0 0 24 24"
+      width="24"
+    >
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path
+        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+      />
+    </svg>
+    <svg
+      id="minimize"
+      xmlns="http://www.w3.org/2000/svg"
+      height="24"
+      viewBox="0 0 24 24"
+      width="24"
+    >
+      <path d="M0 0h24v24H0V0z" fill="none" />
+      <path d="M6 19h12v2H6z" />
+    </svg>
+    <div id="iframe"></div>
+    <div id="answer-container"></div>
+    <div id="button-container">
+      <button id="submit-answers" type="submit">Submit</button>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+import { ShopifyTypes } from '../../../constants';
+import {
+  Task as TaskConstants,
+  Monitor as MonitorConstants
+} from '../../common/constants';
+import { gateways } from './gateways';
+
+const MonitorStates = {
+  ...MonitorConstants.States,
+  MONITOR: 'MONITOR',
+  GET_PRODUCTS: 'GET_PRODUCTS',
+  MATCH_PRODUCT: 'MATCH_PRODUCT',
+  GET_PRODUCT: 'GET_PRODUCT',
+  PARSE_FORM: 'PARSE_FORM',
+  WAIT_FOR_ANSWERS: 'WAIT_FOR_ANSWERS'
+};
+
+/**
+ * Task Runner States
+ */
+const CheckoutStates = {
+  ...TaskConstants.States,
+  GET_HOMEPAGE: 'GET_HOMEPAGE',
+  GET_CONFIG: 'GET_CONFIG',
+
+  GET_PRODUCT: 'GET_PRODUCT',
+  CLEAR_CART: 'CLEAR_CART',
+
+  GET_PASSWORD: 'GET_PASSWORD',
+  SUBMIT_PASSWORD: 'SUBMIT_PASSWORD',
+
+  GET_ACCOUNT: 'GET_ACCOUNT',
+  SUBMIT_ACCOUNT: 'SUBMIT_ACCOUNT',
+
+  GET_CHALLENGE: 'GET_CHALLENGE',
+  SUBMIT_CHALLENGE: 'SUBMIT_CHALLENGE',
+
+  GET_CART: 'GET_CART',
+  PRESUBMIT_CART: 'PRESUBMIT_CART',
+  SUBMIT_CART: 'SUBMIT_CART',
+
+  WAIT_FOR_CHECKPOINT: 'WAIT_FOR_CHECKPOINT',
+  GET_CHECKPOINT: 'GET_CHECKPOINT',
+  SUBMIT_CHECKPOINT: 'SUBMIT_CHECKPOINT',
+
+  INIT_CHECKOUT: 'INIT_CHECKOUT',
+  GET_QUEUE: 'GET_QUEUE',
+
+  GET_NEXT_QUEUE: 'GET_NEXT_QUEUE',
+
+  PATCH_CHECKOUT: 'PATCH_CHECKOUT',
+
+  GET_CUSTOMER: 'GET_CUSTOMER',
+  SUBMIT_CUSTOMER: 'SUBMIT_CUSTOMER',
+
+  GET_SHIPPING: 'GET_SHIPPING',
+  SUBMIT_SHIPPING: 'SUBMIT_SHIPPING',
+
+  SUBMIT_DISCOUNT: 'SUBMIT_DISCOUNT',
+
+  GET_PAYMENT: 'GET_PAYMENT',
+  SUBMIT_PAYMENT: 'SUBMIT_PAYMENT',
+
+  CREATE_GUEST: 'CREATE_GUEST',
+  APPROVE_GUEST: 'APPROVE_GUEST',
+  GET_CALLBACK: 'GET_CALLBACK',
+
+  GET_SESSION: 'GET_SESSION',
+
+  GET_PRICE: 'GET_PRICE',
+  GET_REVIEW: 'GET_REVIEW',
+  SUBMIT_REVIEW: 'SUBMIT_REVIEW',
+
+  COMPLETE_PAYMENT: 'COMPLETE_PAYMENT',
+
+  GET_ORDER: 'GET_ORDER'
+};
+
+const Modes = { ...ShopifyTypes };
+
+const Task = {
+  Modes,
+  States: CheckoutStates
+};
+
+const Monitor = {
+  States: MonitorStates,
+  Events: {
+    ...MonitorConstants.Events,
+    DataGathered: 'DATA_GATHERED',
+    ProductFound: 'PRODUCT_FOUND',
+    StockUpdated: 'STOCK_UPDATED'
+  }
+};
+
+export { Task, Monitor, gateways };

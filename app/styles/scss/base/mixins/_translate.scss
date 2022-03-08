@@ -1,0 +1,21 @@
+//------ SASS Useful Mixins ---------------------------------------------
+
+// by Ryan Burgess
+// https://github.com/ryanburgess/SASS-Useful-Mixins
+// MIT © Ryan Burgess
+
+// ----------------------------------------------------------------------
+
+// Translate
+
+// ----------------------------------------------------------------------
+
+// example: @include translate(0);
+
+@mixin translate($value) {
+  -webkit-transform: translateZ($value);
+  -moz-transform: translateZ($value);
+  -ms-transform: translateZ($value);
+  -o-transform: translateZ($value);
+  transform: translateZ($value);
+}

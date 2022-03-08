@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <meta
+      name="viewport"
+      content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+    />
+    <script>
+      if (!crossOriginIsolated) SharedArrayBuffer = ArrayBuffer;
+    </script>
+    <title>Nebula Omega</title>
+    <style>
+      * {
+        font-family: Roboto;
+        -webkit-app-region: no-drag;
+        user-select: none;
+        outline: none;
+        /* force everything underneath the #titlebar */
+        z-index: 9997; 
+      }
+
+      svg:hover, button:hover {
+        opacity: 0.75;
+      }
+
+      html, body {
+        height: 100%;
+        width: 100%;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      #titlebar {
+        -webkit-app-region: drag !important;
+        height: 48px;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9998;
+      }
+
+      #logo {
+        height: 96px;
+        width: auto;
+        margin-top: -114px;
+        margin-bottom: 32px;
+      }
+
+      #close, #minimize {
+        position: absolute;
+        height: 28px;
+        width: auto;
+        /* force both of the icons over the #titlebar */
+        z-index: 9999;
+        fill: #ffffff;
+      }
+
+      #activate:hover, #close:hover, #minimize:hover {
+        cursor: pointer;
+      }
+
+      #close {
+        right: 12px;
+        top: 12px;
+      }
+
+      #minimize {
+        right: 46px;
+        top: 2px;
+      }
+
+      #welcome {
+        margin: 0;
+        font-size:24px;
+        letter-spacing: 2px;
+        font-weight: 700;
+        color: #ffffff;
+        text-align: center;
+      }
+      
+      #subtext {
+        font-size:14px;
+        font-weight: 500;
+        color: #C1C1C2;
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      #license {
+        background-color: #2E2F34;
+        border-radius: 4px;
+        border: none;
+        font-size: 14px;
+        text-align: center;
+        color: #ffffff;
+        padding-left: 8px;
+        padding-right: 8px;
+        height: 32px;
+        width: 262px;
+        margin-bottom: 16px;
+      }
+
+      #activate {
+        height: 32px;
+        letter-spacing: 2px;
+        font-weight: 700;
+        background: linear-gradient(90deg, #8377F4 0%, #A49BFF 100%);
+        border-radius: 4px;
+        border: none;
+        color: #ffffff;
+      }
+
+      #copyright {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        bottom: 8px;
+        width: 200px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        color: #C1C1C2;
+      }
+
+      #status {
+        text-transform: uppercase;
+        text-align: center;
+        position: absolute;
+        bottom: 72px;
+        font-size: 12px;
+        color: #FF3A5E;
+      }
+
+      .hidden {
+        visibility: hidden;
+      }
+
+      .disabled {
+        opacity: 0.55 !important;
+        cursor: not-allowed !important;
+      }
+
+      .visible {
+        visibility: visible;
+      }
+
+      .flex-container {
+        height: calc(100% - 48px);
+        padding: 0;
+        margin: 0;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .flex-column {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .fade-in {
+        animation-delay: 0s;
+        animation: fadeIn ease 2.5s;
+      }
+
+      @keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+
+      .lds-ring {
+        z-index: 99999;
+        position: absolute;
+        top: 67.5%;
+        left: 47.5%;
+      }
+
+      .lds-ring div {
+        z-index: 100000;
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        margin: 8px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: #fff transparent transparent transparent;
+      }
+      .lds-ring div:nth-child(1) {
+        animation-delay: -0.45s;
+      }
+      .lds-ring div:nth-child(2) {
+        animation-delay: -0.3s;
+      }
+      .lds-ring div:nth-child(3) {
+        animation-delay: -0.15s;
+      }
+      @keyframes lds-ring {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div id="titlebar"></div>
+    <svg id="close" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+    <svg id="minimize" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19h12v2H6z"/></svg>
+    <div class="flex-container flex-column">
+      <div class="flex-row">
+        <img id="logo" class="fade-in" draggable="false" src="https://nebulabots.s3.amazonaws.com/logo.png" />
+      </div>
+      <div class="flex-row">
+        <h1 id="welcome">Welcome Back!</h1>
+        <p id="subtext">Please enter your license key below</p>
+        <div class="flex-column">
+          <input id="license" placeholder="XXXXX-XXXXX-XXXXX-XXXXX" />
+          <button id="activate">SIGN IN &rarr;
+            <div id="loader-container">
+              <div id="loader" class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <p id="status"></p>
+    </div>
+    <p id="copyright">© 2021 Nebula Automation, LLC</p>
+  </body>
+</html>

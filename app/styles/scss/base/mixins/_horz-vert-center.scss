@@ -1,0 +1,10 @@
+// example: @include horz-vert-center();
+
+@mixin horz-vert-center($alignItem: true) {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  @if $alignItem {
+    align-items: center;
+  }
+}

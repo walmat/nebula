@@ -1,0 +1,189 @@
+* {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-rendering: optimizeLegibility;
+  outline: none !important;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+svg,
+button,
+img,
+a {
+  text-decoration: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.defaultCursorSidebar > * {
+  cursor: default !important;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  border-radius: $borderRadius;
+  background-color: transparent;
+}
+
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: transparent;
+  // background: $appBgColor !important;
+  @include rem('font-size', $regularSize);
+
+  border-radius: $borderRadius;
+  font-family: $roboto;
+  overflow: hidden;
+}
+
+a {
+  cursor: pointer;
+  color: $appSecondaryColor;
+}
+
+*::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  background-color: rgba(164, 155, 255, 0.333);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 5px;
+  opacity: 0.75;
+  transition: background-color 0.3s;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  border-radius: 5px;
+  background-color: #8e83f4;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0);
+  background-color: #8e83f4;
+  min-height: 65px;
+}
+
+.rccs {
+  margin: 0 auto 16px auto !important;
+  width: 100% !important;
+}
+
+.rccs__chip {
+  height: 16px !important;
+}
+
+.rccs__card__background {
+  display: none;
+}
+
+.rccs__issuer {
+  background-size: 100% !important;
+  width: 20% !important;
+}
+
+.rccs__card {
+  height: 130px !important;
+  width: 230px !important;
+}
+
+.rccs__name {
+  color: #000 !important;
+  font-size: 10px !important;
+}
+
+.rccs__expiry__valid {
+  color: #000 !important;
+  font-size: 8px !important;
+}
+
+.rccs__number,
+.rccs__expiry__value,
+.rccs__cvc {
+  color: #000 !important;
+  font-size: 12px !important;
+}
+
+.rccs__card--front,
+.rccs__card--back {
+  box-shadow: none !important;
+  background: #d8d8d8 !important;
+  border-radius: 12px !important;
+}
+
+.rccs > * {
+  color: #000 !important;
+}
+
+.checkouts--list {
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.MuiTableSortLabel-root.MuiTableSortLabel-active {
+  color:rgba(164,155,255,1);
+}
+
+.MuiTableSortLabel-root.MuiTableSortLabel-active.MuiTableSortLabel-root.MuiTableSortLabel-active .MuiTableSortLabel-icon {
+  color:rgba(131,119,244,1);
+}
+
+.MuiTypography-root.MuiPickersClockNumber-clockNumber.MuiTypography-body1 {
+  color: #616161;
+}
+
+.MuiIconButton-colorPrimary:hover, .MuiCheckbox-colorPrimary.Mui-checked:hover, .MuiSwitch-colorPrimary.Mui-checked:hover, .MuiIconButton-root:hover {
+  background-color: transparent;
+}
+
+.MuiInputBase-inputMultiline {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.adjust-sizing {
+  width: 20px;
+  height: auto;
+}
+
+.MuiFormControlLabel-label.Mui-disabled {
+  color: #979797;
+}
+
+.MuiSwitch-track {
+  background-color: #d8d8d8 !important;
+}
+
+.MuiButton-root:hover.Mui-disabled {
+  background-color: #8E83F4;
+}
+
+.MuiButton-root.Mui-disabled {
+  pointer-events: unset;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+#client-snackbar > svg {
+  margin-right: 8px;
+}
