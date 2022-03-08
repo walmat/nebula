@@ -1,0 +1,65 @@
+productName: Nebula Omega
+appId: app.example.com
+forceCodeSigning: true
+asar: true
+compression: normal
+afterPack: './internals/scripts/AfterPack.js'
+afterSign: './internals/scripts/Notarize.js'
+
+publish:
+  provider: s3
+  bucket: test
+  region: us-east-1
+  path: /
+  acl: public-read
+  endpoint: https://s3.us-east-1.amazonaws.com
+  channel: latest
+
+files:
+  - app/dist/
+  - app/app.html
+  - app/auth.html
+  - app/Question.html
+  - app/Harvester.html
+  - app/success.mp3
+  - app/notify.mp3
+  - app/main.prod.js
+  - '!**/node_modules/puppeteer/.local-chromium/**/*'
+  - package.json
+
+mac:
+  type: distribution
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  darkModeSupport: true
+  entitlements: build/mac/entitlements.mac.plist
+  entitlementsInherit: build/mac/entitlements.mac.plist
+  artifactName: Nebula-Omega-${version}-installer.${ext}
+  category: public.app-category.utils
+  icon: build/icon.icns
+  target:
+    - dmg
+    - zip
+
+dmg:
+  sign: false
+  backgroundColor: '#867df4'
+  contents:
+    - type: link
+      path: /Applications
+      x: 410
+      y: 150
+    - type: file
+      x: 130
+      y: 150
+win:
+  publisherName: 'John Doe'
+  verifyUpdateCodeSignature: false
+  artifactName: 'Nebula-Omega-${version}-installer.${ext}'
+  target:
+    - nsis
+
+nsis:
+  deleteAppDataOnUninstall: true
+  perMachine: true
+  oneClick: true
